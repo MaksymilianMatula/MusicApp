@@ -1,5 +1,6 @@
 package com.example.julian.musicapp.topsongs;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,14 @@ public class TopSongsAdapter extends RecyclerView.Adapter<TopSongsAdapter.TopSon
         holder.tvArtist.setText(single.strArtist);
         holder.tvAlbum.setText(single.strAlbum);
 
+        holder.iiContainer.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), SongDetailsActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
 
     }
 
@@ -49,7 +58,7 @@ public class TopSongsAdapter extends RecyclerView.Adapter<TopSongsAdapter.TopSon
 
     public class TopSongsViewHolder extends RecyclerView.ViewHolder {
 
-        LinearLayout llContainer;
+        LinearLayout iiContainer;
         TextView tvPlace;
         TextView tvTrack;
         TextView tvArtist;
@@ -58,7 +67,7 @@ public class TopSongsAdapter extends RecyclerView.Adapter<TopSongsAdapter.TopSon
         public TopSongsViewHolder(View itemView) {
             super(itemView);
 
-            llContainer = itemView.findViewById(R.id.llContainer);
+            iiContainer = itemView.findViewById(R.id.IIContainer);
             tvPlace = itemView.findViewById(R.id.tvPlace);
             tvTrack = itemView.findViewById(R.id.tvTrack);
             tvArtist = itemView.findViewById(R.id.tvArtist);
