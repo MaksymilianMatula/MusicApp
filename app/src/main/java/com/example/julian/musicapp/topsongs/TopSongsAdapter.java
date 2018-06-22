@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.example.julian.musicapp.api.TrendingSingle;
 import com.example.user.myapplication.R;
 
-
 import java.util.List;
 
 public class TopSongsAdapter extends RecyclerView.Adapter<TopSongsAdapter.TopSongsViewHolder> {
@@ -33,18 +32,22 @@ public class TopSongsAdapter extends RecyclerView.Adapter<TopSongsAdapter.TopSon
     @Override
     public void onBindViewHolder(TopSongsViewHolder holder, int position) {
 
-        TrendingSingle single = singles.get(position);
+        final TrendingSingle single = singles.get(position);
 
         holder.tvPlace.setText(String.valueOf(single.intChartPlace));
         holder.tvTrack.setText(single.strTrack);
         holder.tvArtist.setText(single.strArtist);
         holder.tvAlbum.setText(single.strAlbum);
 
-        holder.iiContainer.setOnClickListener(new View.OnClickListener() {
+        holder.llContainer.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), SongDetailsActivity.class);
+                intent.putExtra(SongDetailsActivity.TRACK, single.strTrack);
+                intent.putExtra(SongDetailsActivity.ARTIST, single.strArtist);
+                intent.putExtra(SongDetailsActivity.TRACK_ID, single.idTrack);
+
                 v.getContext().startActivity(intent);
             }
         });
@@ -58,7 +61,7 @@ public class TopSongsAdapter extends RecyclerView.Adapter<TopSongsAdapter.TopSon
 
     public class TopSongsViewHolder extends RecyclerView.ViewHolder {
 
-        LinearLayout iiContainer;
+        LinearLayout llContainer;
         TextView tvPlace;
         TextView tvTrack;
         TextView tvArtist;
@@ -67,7 +70,7 @@ public class TopSongsAdapter extends RecyclerView.Adapter<TopSongsAdapter.TopSon
         public TopSongsViewHolder(View itemView) {
             super(itemView);
 
-            iiContainer = itemView.findViewById(R.id.IIContainer);
+            llContainer = itemView.findViewById(R.id.llContainer);
             tvPlace = itemView.findViewById(R.id.tvPlace);
             tvTrack = itemView.findViewById(R.id.tvTrack);
             tvArtist = itemView.findViewById(R.id.tvArtist);
