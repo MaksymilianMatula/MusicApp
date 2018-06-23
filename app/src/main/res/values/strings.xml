@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">MusicApp</string>
     <string name="top_songs">Utwory tygodnia</string>
+    <string name="album">Album:</string>
+    <string name="genre">Gatunek:</string>
+    <string name="style">Styl:</string>
 </resources>
 
