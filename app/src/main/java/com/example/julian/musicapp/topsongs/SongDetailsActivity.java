@@ -3,9 +3,11 @@ package com.example.julian.musicapp.topsongs;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.julian.musicapp.api.ApiService;
 import com.example.julian.musicapp.api.Track;
 import com.example.julian.musicapp.api.Tracks;
@@ -29,7 +31,7 @@ public class SongDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        String track = intent.getStringExtra(TRACK);
+        final String track = intent.getStringExtra(TRACK);
         String artist = intent.getStringExtra(ARTIST);
         int trackId = intent.getIntExtra(TRACK_ID, 0);
 
@@ -43,6 +45,7 @@ public class SongDetailsActivity extends AppCompatActivity {
                 if (tracks != null && tracks.track.size() > 0) {
                     showData(tracks.track.get(0));
                 }
+
 
             }
 
@@ -65,6 +68,11 @@ public class SongDetailsActivity extends AppCompatActivity {
         tvGenre.setText(track.strGenre);
         tvStyle.setText(track.strStyle);
         tvDescription.setText(track.strDescriptionEN);
+
+        if (track.strTrackThumb != null && !track.strTrackThumb.isEmpty()) {
+            ImageView ivThumb = findViewById(R.id.ivThumb);
+            Glide.with(this).load(track.strTrackThumb).into(ivThumb);
+        }
     }
 
 }
