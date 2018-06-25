@@ -74,5 +74,11 @@ public class SongDetailsActivity extends AppCompatActivity {
             Glide.with(this).load(track.strTrackThumb).into(ivThumb);
         }
     }
+    @Override
+    public boolean onSupportNavigateUp() {
 
+        onBackPressed();
+
+        return true;
+    }
 }
