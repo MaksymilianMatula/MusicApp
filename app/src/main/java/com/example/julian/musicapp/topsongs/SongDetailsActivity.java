@@ -3,6 +3,8 @@ package com.example.julian.musicapp.topsongs;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,13 @@ public class SongDetailsActivity extends AppCompatActivity {
     public static final String TRACK = "track";
     public static final String ARTIST = "artist";
     public static final String TRACK_ID = "track_id";
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.favorite_menu, menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
